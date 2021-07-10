@@ -19,3 +19,22 @@ python main.py --image_size 256 --batch_size 8 --num_classes 2 --validation_spli
 4. To produce model predictions on a directory of test images run script predict.py with the following arguments :
 ```
 python predict.py --image_size 256 --num_classes 2 --image_path ./test --model_path ./model.h5 --output_path ./results
+```
+
+The arvix version of the paper can found at the following [link](https://arxiv.org/abs/1904.00592)
+
+If you find this repo usefule please cite the original authors :
+```
+￼@article{DIAKOGIANNIS202094,
+title = "ResUNet-a: A deep learning framework for semantic segmentation of remotely sensed data",
+journal = "ISPRS Journal of Photogrammetry and Remote Sensing",
+volume = "162",
+pages = "94 - 114",
+year = "2020",
+issn = "0924-2716",
+doi = "https://doi.org/10.1016/j.isprsjprs.2020.01.013",
+url = "http://www.sciencedirect.com/science/article/pii/S0924271620300149",
+author = "Foivos I. Diakogiannis and François Waldner and Peter Caccetta and Chen Wu",
+keywords = "Convolutional neural network, Loss function, Architecture, Data augmentation, Very high spatial resolution"
+}
+```
