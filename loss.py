@@ -1,6 +1,5 @@
 import tensorflow as tf
-import tensorflow.keras.backend as K
-from typing import Callable
+import tf.keras.backend as K
 
 def Tanimoto_loss(label, pred):
     """
