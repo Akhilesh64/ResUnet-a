@@ -23,7 +23,9 @@ python predict.py --image_size 256 --num_classes 2 --image_path ./test --model_p
 
 The arvix version of the paper can found at the following [link](https://arxiv.org/abs/1904.00592)
 
-If you find this repo usefule please cite the original authors :
+
+
+If you find this repo useful please cite the original authors :
 ```
 ￼@article{DIAKOGIANNIS202094,
 title = "ResUNet-a: A deep learning framework for semantic segmentation of remotely sensed data",
