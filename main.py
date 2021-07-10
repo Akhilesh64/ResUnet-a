@@ -9,7 +9,7 @@ import argparse
 import tensorflow as tf
 from model import ResUnet
 from loss import Tanimoto_dual_loss
-from tensorflow.keras.optimizers import *
+from tf.keras.optimizers import *
 from batch_preprocess import DataParser
 
 loss = Tanimoto_dual_loss()
