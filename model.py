@@ -1,5 +1,5 @@
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import *
+from tf.keras.models import Model
+from tf.keras.layers import *
 
 class ResUnet(object):
     
@@ -20,18 +20,16 @@ class ResUnet(object):
         out = Add()(out)
         return out
 
-    def PSPPooling(self, input, filters):
+    def PSPPooling(self, input, filters, height):
         out = [input]
-        if filters == 2048:
-            size = [1,2,4]
-        else:
-            size = [1,2,4,8]
-        for i in size:
+        for i in [1,2,4]:
             x = MaxPooling2D(pool_size = i, strides = i)(input)
             x = UpSampling2D(size = i)(x)
             x = Conv2D((filters//4), 1, padding='same')(x)
             x = BatchNormalization()(x)
             out.append(x)
+        if height==448 and filters==1024:
+            out[3] = ZeroPadding2D((1, 1))(out[3])
         out = Concatenate(axis=-1)([out[0],out[1],out[2],out[3]])
         out = Conv2D(filters, 1, padding = 'same')(out)
         out = BatchNormalization()(out)
@@ -67,14 +65,17 @@ class ResUnet(object):
         x = Conv2D(1024, 1, strides = 2, padding='same')(x)     #Layer-11
         x = self.residual_block(x, 1024, [1])                   #Layer-12
         g = x 
-        # x = self.PSPPooling(x, 1024)                          #ResUnet-a d6 model
+
+        if self.height == 448:
+            x = self.PSPPooling(x, 1024, self.height)                          #ResUnet-a d6 model
         
         x = Activation('relu')(x)
-        x = Conv2D(2048, 1, strides = 2, padding = 'same')(x)
-        x = self.residual_block(x, 2048, [1])
-        # x = MaxPooling1D(pool_size=2, strides=2)(x)           #ResUnet-a d7v1 model
-        x = self.PSPPooling(x, 2048)                            #ResUnet-a d7v2 model
-        x = self.combine(x, g, 2048)
+        if self.height != 448:
+            x = Conv2D(2048, 1, strides = 2, padding = 'same')(x)
+            x = self.residual_block(x, 2048, [1])
+            # x = MaxPooling1D(pool_size=2, strides=2)(x)           #ResUnet-a d7v1 model
+            x = self.PSPPooling(x, 2048, self.height)                            #ResUnet-a d7v2 model
+            x = self.combine(x, g, 2048)
 
         x = self.combine(x, f, 512)
         x = self.residual_block(x, 512, [1])
@@ -87,7 +88,7 @@ class ResUnet(object):
         x = self.combine(x, b, 32)
         x = self.residual_block(x, 32, [1])
         x1 = Concatenate(axis=-1)([x,a])
-        x = self.PSPPooling(x1, 32)
+        x = self.PSPPooling(x1, 32, self.height)
         x = Activation('relu')(x)
         
         dist = ZeroPadding2D(padding=1)(x1)
@@ -98,16 +99,16 @@ class ResUnet(object):
         dist = Conv2D(32, 3)(dist)
         dist = BatchNormalization()(dist)
         dist = Activation('relu')(dist)
-        dist = Conv2D(self.num_classes, 1, activation='softmax', name = 'distance_out')(dist)
+        dist = Conv2D(self.num_classes, 1, activation='softmax', name = 'distance')(dist)
 
         bound = Concatenate(axis=-1)([x, dist])
         bound = ZeroPadding2D(padding=1)(bound)
         bound = Conv2D(32, 3)(bound)
         bound = BatchNormalization()(bound)
         bound = Activation('relu')(bound)
-        bound = Conv2D(self.num_classes, 1, activation='sigmoid', name = 'boundary_out')(bound)
+        bound = Conv2D(self.num_classes, 1, activation='sigmoid', name = 'boundary')(bound)
 
-        color = Conv2D(3, 1, activation = 'sigmoid', name = 'color_out')(x1)
+        color = Conv2D(3, 1, activation = 'sigmoid', name = 'color')(x1)
 
         seg = Concatenate(axis=-1)([x,bound,dist])
         seg = ZeroPadding2D(padding=1)(seg)
@@ -118,20 +119,8 @@ class ResUnet(object):
         seg = Conv2D(32, 3)(seg)
         seg = BatchNormalization()(seg)
         seg = Activation('relu')(seg)
-        seg = Conv2D(self.num_classes, 1, activation='softmax', name = 'segmentation_out')(seg)
-        
-        out = []
-        out.append(dist)
-        out.append(bound)
-        out.append(color)
-        out.append(seg)
+        seg = Conv2D(self.num_classes, 1, activation='softmax', name = 'segmentation')(seg)
 
-        # model = Model(inputs = input, outputs=bound)
         model = Model(inputs = input, outputs={'seg': seg, 'bound': bound, 'dist': dist, 'color' : color})
-        # model.compile(optimizer=Adam(),loss=Tanimoto_loss,metrics=['accuracy'])
-        # model.summary()
-        return model
-
-
-
         
+        return model
