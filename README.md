@@ -21,7 +21,7 @@ python main.py --image_size 256 --batch_size 8 --num_classes 2 --validation_spli
 python predict.py --image_size 256 --num_classes 2 --image_path ./test --model_path ./model.h5 --output_path ./results
 ```
 
-The arvix version of the paper can found at the following [link](https://arxiv.org/abs/1904.00592)
+The arvix version of the paper can found at the following[link](https://arxiv.org/abs/1904.00592).
 
 
 
