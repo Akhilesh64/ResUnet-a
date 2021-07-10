@@ -23,13 +23,13 @@ python predict.py --image_size 256 --num_classes 2 --image_path ./test --model_p
 
 ## Results
 
-![gt1](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/gt/polygon_1.png)            ![result1](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/results/polygon_1.png)
+![gt1](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/gt/polygon_1.png) &nbsp;&nbsp;&nbsp; ![result1](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/results/polygon_1.png)
 
 
-![gt2](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/gt/polygon_16.png)           ![result2](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/results/polygon_16.png)
+![gt2](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/gt/polygon_16.png) &nbsp;&nbsp;&nbsp; ![result2](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/results/polygon_16.png)
 
 
-![gt3](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/gt/polygon_46.png)           ![result3](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/results/polygon_46.png)
+![gt3](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/gt/polygon_46.png) &nbsp;&nbsp;&nbsp; ![result3](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/results/polygon_46.png)
 
 ## Citation
 
