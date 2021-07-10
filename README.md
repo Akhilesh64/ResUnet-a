@@ -21,9 +21,19 @@ python main.py --image_size 256 --batch_size 8 --num_classes 2 --validation_spli
 python predict.py --image_size 256 --num_classes 2 --image_path ./test --model_path ./model.h5 --output_path ./results
 ```
 
-The arvix version of the paper can found at the following[link](https://arxiv.org/abs/1904.00592).
+## Results
+
+![image1](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/images/polygon_1.tif)     ![gt1](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/gt/polygon_1.png)      [result1](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/results/polygon_1.png)
 
 
+![image2](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/images/polygon_16.tif)     ![gt2](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/gt/polygon_16.png)      [result2](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/results/polygon_16.png)
+
+
+![image3](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/images/polygon_46.tif)     ![gt3](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/gt/polygon_46.png)      [result3](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/results/polygon_46.png)
+
+## Citation
+
+The arvix version of the paper can found at the following [link](https://arxiv.org/abs/1904.00592).
 
 If you find this repo useful please cite the original authors :
 ```
