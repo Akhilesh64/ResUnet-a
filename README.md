@@ -1,6 +1,6 @@
 # ResUnet-a
 
-This repository contains implementation of the paper "ResUNet-a: a deep learning framework for semantic segmentation of remotely sensed data" in TensorFlow for the detection of plot boundaries specfically.
+This repository contains implementation of the paper "ResUNet-a: a deep learning framework for semantic segmentation of remotely sensed data" in TensorFlow for the detection of plot boundaries specifically.
 
 ## Usage
 
