@@ -23,6 +23,8 @@ python predict.py --image_size 256 --num_classes 2 --image_path ./test --model_p
 
 ## Results
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Original Boundary mask &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Predicted Boundary mask
+
 ![gt1](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/gt/polygon_1.png) &nbsp;&nbsp;&nbsp; ![result1](https://raw.githubusercontent.com/Akhilesh64/ResUnet-a/main/results/polygon_1.png)
 
 
