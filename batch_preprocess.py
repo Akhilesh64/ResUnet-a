@@ -38,15 +38,14 @@ class DataParser():
             em = cv2.resize(em,(self.image_size,self.image_size))
             em[em > 0] = 255
             em = np.stack([em, em, em], axis=-1)
-            em[em > 0] = 255
 
             em = binarize_matrix(em, self.label_dict)
 
             em = tf.keras.utils.to_categorical(em, self.num_classes)
 
-            img_float = im.astype(np.float32)
-            img_float = normalize_rgb(img_float)
-            images.append(img_float)
+            im = im.astype(np.float32)
+            im = normalize_rgb(im)
+            images.append(im)
 
             # All multitasking labels are saved in one-hot
             # Segmentation
